@@ -1,30 +1,32 @@
 <?php
-
-$serverName = 'localhost';
-$userName = 'root';
-$password = '';
-$myDb = 'hossien';
-
-try {
-    $connection = new PDO("mysql:host=$serverName;dbname=$myDb;", $userName, $password);
-    $connection -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Add Product</title>
-    </head>
-    <body>
-        <h1>Hello world!</h1>
-    </body>
-</html>
-<?php
-} catch(PDOException $e) {
-    echo $sql . "<br>" . $e->getMessage();
-}
-      
-$connection = null;
-
-?>
+    $books = [
+        [
+            'title' => 'The first book',
+            'Author' => 'Author1',
+            'publish_date' => '1395',
+            'price' => 100000
+        ],
+        [
+            'title' => 'The new first book',
+            'Author' => 'Author1',
+            'publish_date' => '1395',
+            'price' => 110000
+        ],
+        [
+            'title' => 'The second book',
+            'Author' => 'The second Author',
+            'publish_date' => '1399',
+            'price' => 200000
+        ],
+        [
+            'title' => 'The third book',
+            'Author' => 'The third Author',
+            'publish_date' => '1395',
+            'price' => 150000
+        ]
+    ];
+    
+    $filteredbook = array_filter($books,function($book){
+        return $book['price'] <= 150000;
+    });
+require('index.view.php');
